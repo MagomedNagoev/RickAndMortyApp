@@ -16,10 +16,10 @@ class CharactersViewController: UIViewController {
     private var countCharacters: Int = 0
     private var urls = [String]()
 
-    init(urls: [String]) {
-
+    init(urls: [String], title: String) {
         self.urls = urls
         super.init(nibName: nil, bundle: nil)
+        self.title = title
     }
 
     required init?(coder: NSCoder) {
@@ -98,8 +98,6 @@ class CharactersViewController: UIViewController {
     }
 
     func configureUI() {
-        title = "All characters"
-        navigationController?.navigationBar.prefersLargeTitles = true
 
         view.backgroundColor = .white
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
@@ -114,7 +112,7 @@ class CharactersViewController: UIViewController {
         collectionView.dataSource = self
         
         view.addSubview(collectionView)
-        collectionView.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
+        collectionView.autoPinEdge(toSuperviewSafeArea: .top)
         collectionView.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
         collectionView.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
         collectionView.autoPinEdge(toSuperviewSafeArea: .bottom)
@@ -134,7 +132,7 @@ extension CharactersViewController: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let char = characters[indexPath.item]
+        let character = characters[indexPath.item]
 
         if characterNumber < countCharacters && indexPath.row == characters.count - 1 {
             let cellEpisode = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCell.identifier,
@@ -152,7 +150,7 @@ extension CharactersViewController: UICollectionViewDelegate,
                 return UICollectionViewCell()
             }
 
-            guard let name = char.name, let id = char.id, let urlString = char.image else {
+            guard let name = character.name, let id = character.id, let urlString = character.image else {
                 return UICollectionViewCell()
             }
             cell.set(title: name, id: id, favoriteCharacter: false, urlString: urlString)

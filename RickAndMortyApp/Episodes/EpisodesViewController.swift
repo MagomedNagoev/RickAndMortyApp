@@ -56,9 +56,9 @@ class EpisodesViewController: UIViewController {
 
     func configureUI() {
         title = "All episodes"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
         view.backgroundColor = .white
-
+        
         view.addSubview(tableView)
         tableView.autoPinEdgesToSuperviewSafeArea()
         tableView.dataSource = self
@@ -110,8 +110,9 @@ extension EpisodesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let characters = episodes[indexPath.row].characters else {return}
-        let vc1 = CharactersViewController(urls: characters)
+        guard let episodeName = episodes[indexPath.row].episode  else {return}
+        let characterViewController = CharactersViewController(urls: characters, title: episodeName)
         self.definesPresentationContext = true
-        navigationController?.pushViewController(vc1, animated: true)
+        navigationController?.pushViewController(characterViewController, animated: true)
     }
 }

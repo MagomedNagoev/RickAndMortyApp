@@ -27,7 +27,7 @@ class MainTabBarController: UITabBarController {
     }
 
     func configureViewControllers() {
-        let charactersViewController  = CharactersViewController(urls: [String]())
+        let charactersViewController  = CharactersViewController(urls: [String](), title: "All characters")
         let charNav = templateNavigationController(image: UIImage(systemName: "person.3")!,
                                                     tabBarItemTitle: "All characters",
                                                     rootViewController: charactersViewController)
@@ -53,6 +53,7 @@ class MainTabBarController: UITabBarController {
         navCtrl.tabBarItem.image = image
         navCtrl.navigationBar.barTintColor = .white
         navCtrl.tabBarItem.title = tabBarItemTitle
+        navCtrl.navigationBar.prefersLargeTitles = true
         return navCtrl
     }
 

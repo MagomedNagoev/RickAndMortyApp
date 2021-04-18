@@ -22,7 +22,7 @@ class SegmentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.titleView = segmentedControl
         navigationItem.titleView?.autoPinEdge(toSuperviewEdge: .left)
         navigationItem.titleView?.autoPinEdge(toSuperviewEdge: .right)
