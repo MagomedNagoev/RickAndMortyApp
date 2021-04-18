@@ -98,6 +98,8 @@ class CharactersViewController: UIViewController {
     }
 
     func configureUI() {
+        title = "All characters"
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         view.backgroundColor = .white
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())

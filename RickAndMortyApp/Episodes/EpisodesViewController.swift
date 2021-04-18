@@ -55,6 +55,9 @@ class EpisodesViewController: UIViewController {
     }
 
     func configureUI() {
+        title = "All episodes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .white
 
         view.addSubview(tableView)
         tableView.autoPinEdgesToSuperviewSafeArea()
